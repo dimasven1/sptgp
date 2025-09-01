@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Data</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: slideUp 1s forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            font-size: 22px;
+            color: #333;
+        }
+
+        p {
+            margin: 0;
+            color: #777;
+            font-size: 16px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            background: #1a73e8;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            background: #1558b0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Kelola Data</h2>
+        <p>Belum ada data untuk dikelola</p>
+        <a href="pilihan.html" class="btn-back">← Kembali</a>
+    </div>
+</body>
+</html>

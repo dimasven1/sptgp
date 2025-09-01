@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pencairan Saldo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            flex-direction: column;
+        }
+
+        .loading-text {
+            font-size: 20px;
+            font-weight: bold;
+            color: #1a73e8;
+            animation: pulse 1s infinite;
+        }
+
+        .loading-bar {
+            width: 150px;
+            height: 5px;
+            background: #ddd;
+            border-radius: 10px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            width: 0%;
+            height: 100%;
+            background: #1a73e8;
+            animation: progressAnim 2s linear forwards;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes progressAnim {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+        /* Konten halaman */
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease;
+        }
+
+        .container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            padding: 20px;
+            border-radius: 0 0 20px 20px;
+            color: #fff;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h2 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 22px;
+        }
+
+        .header p {
+            margin: 8px 0 0;
+            font-size: 16px;
+        }
+
+        /* Form */
+        .form {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form input, .form select {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .form button {
+            background: #1a73e8;
+            color: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .form button:hover {
+            background: #0d47a1;
+        }
+
+        /* Daftar akun */
+        .accounts {
+            margin: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .accounts h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+        }
+
+        .account-item {
+            background: #ffffff;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .account-item:hover {
+            background: #e8f0fe;
+        }
+
+        .account-item.active {
+            border: 2px solid #1a73e8;
+            background: #eaf3ff;
+        }
+
+        .checkmark {
+            display: none;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+
+        .account-item.active .checkmark {
+            display: inline;
+        }
+
+        .success, .processing, .error {
+            text-align: center;
+            padding: 15px;
+            display: none;
+            font-weight: bold;
+        }
+
+        .success { color: green; }
+        .processing { color: orange; }
+        .error { color: red; }
+
+        /* Tombol kembali */
+        .back-btn {
+            margin: 20px auto;
+            display: inline-block;
+            text-decoration: none;
+            color: #1a73e8;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-text">Loading...</div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
+    <!-- Konten Halaman -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h2>Pencairan Saldo</h2>
+            <p>Dede Permana | ID: 1522</p>
+        </div>
+
+        <!-- Form Pencairan -->
+        <div class="form">
+            <input type="number" id="nominal" placeholder="Masukkan Nominal (Rp)">
+            <select id="metode">
+                <option value="">Pilih Metode Pencairan</option>
+                <option value="bank">Transfer Bank</option>
+                <option value="ewallet">E-Wallet</option>
+            </select>
+            <button onclick="kirimData()">Kirim</button>
+        </div>
+
+        <div class="error" id="errorMsg">Saldo Anda 0, tidak bisa dicairkan!</div>
+        <div class="processing" id="processingMsg">Transfer sedang diproses...</div>
+        <div class="success" id="successMsg">Pencairan Berhasil!</div>
+
+        <!-- Daftar Akun Terdaftar -->
+        <div class="accounts">
+            <h3>Akun Terdaftar</h3>
+            <div class="account-item" onclick="pilihAkun(this)">
+                <span>BRI</span> <span>061801009947533 <span class="checkmark">✔</span></span>
+            </div>
+            <div class="account-item" onclick="pilihAkun(this)">
+                <span>DANA</span> <span>082286968180 <span class="checkmark">✔</span></span>
+            </div>
+        </div>
+
+        <!-- Tombol Kembali -->
+        <a href="pilihan.html" class="back-btn">← Kembali</a>
+    </div>
+
+    <script>
+        let saldo = localStorage.getItem("saldo") || 0; // Ambil saldo dari halaman sebelumnya
+
+        // Animasi loading
+        setTimeout(() => {
+            document.querySelector('.loading-screen').style.display = 'none';
+            document.querySelector('.container').classList.add('show');
+        }, 2200);
+
+        // Pilih akun
+        function pilihAkun(el) {
+            document.querySelectorAll('.account-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            el.classList.add('active');
+        }
+
+        // Fungsi Kirim Data
+        function kirimData() {
+            let nominal = document.getElementById("nominal").value;
+            let metode = document.getElementById("metode").value;
+            let akunTerpilih = document.querySelector(".account-item.active");
+            let errorMsg = document.getElementById("errorMsg");
+            let processingMsg = document.getElementById("processingMsg");
+            let successMsg = document.getElementById("successMsg");
+
+            errorMsg.style.display = "none";
+            processingMsg.style.display = "none";
+            successMsg.style.display = "none";
+
+            if (saldo <= 0) {
+                errorMsg.style.display = "block";
+                return;
+            }
+
+            if(nominal && metode && akunTerpilih){
+                processingMsg.style.display = "block";
+                setTimeout(() => {
+                    processingMsg.style.display = "none";
+                    successMsg.style.display = "block";
+                }, 3000);
+            } else {
+                alert("Mohon lengkapi semua data dan pilih akun!");
+            }
+        }
+    </script>
+</body>
+</html>

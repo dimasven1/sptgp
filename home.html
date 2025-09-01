@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f4f6f9;
+        }
+
+        .login-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 320px;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeIn 0.8s forwards;
+            position: relative;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 90%;
+            padding: 10px;
+            margin-top: 15px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #1558b0;
+        }
+
+        .btn-back {
+            background: #f44336;
+            margin-top: 10px;
+        }
+
+        .btn-back:hover {
+            background: #c62828;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+            animation: shake 0.3s;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        .loading {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1a73e8;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-icon {
+            display: none;
+            font-size: 28px;
+            color: red;
+            margin-top: 15px;
+            animation: pop 0.4s;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <h2>Login</h2>
+        <input type="text" id="userid" placeholder="Masukkan ID">
+        <button class="btn" onclick="checkID()">Masuk</button>
+        <button class="btn btn-back" onclick="goBack()">Back</button>
+        <div id="loading" class="loading">
+            <div class="loader"></div>
+            <p>Memproses...</p>
+        </div>
+        <div id="errorMsg" class="error">ID salah, coba lagi!</div>
+        <div id="errorIcon" class="error-icon">✖</div>
+    </div>
+
+    <script>
+        function checkID() {
+            const id = document.getElementById("userid").value;
+            const errorMsg = document.getElementById("errorMsg");
+            const errorIcon = document.getElementById("errorIcon");
+            const loading = document.getElementById("loading");
+
+            errorMsg.style.display = "none";
+            errorIcon.style.display = "none";
+
+            if (id === "1522") {
+                loading.style.display = "block";
+                setTimeout(() => {
+                    window.location.href = "pilihan.html";
+                }, 2000);
+            } else {
+                errorMsg.style.display = "block";
+                errorIcon.style.display = "block";
+            }
+        }
+
+        function goBack() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

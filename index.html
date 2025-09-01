@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome DEDE PERMANA</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #000000;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 2s ease forwards;
+            animation-delay: 1s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn.loading {
+            color: transparent;
+            pointer-events: none;
+        }
+
+        .btn.loading::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(-20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        @keyframes fadeInUp {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        @keyframes spin {
+            to {transform: rotate(360deg);}
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome SPT GROUP</h1>
+    <a href="#" class="btn" id="lanjutBtn">Lanjutkan</a>
+
+    <script>
+        const btn = document.getElementById("lanjutBtn");
+        btn.addEventListener("click", function(e) {
+            e.preventDefault();
+            btn.classList.add("loading");
+            setTimeout(() => {
+                window.location.href = "home.html"; // Sekarang menuju home.html
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

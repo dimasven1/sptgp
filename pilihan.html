@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilihan - Dede Permana</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: slideFadeIn 1s ease forwards;
+        }
+
+        @keyframes slideFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            padding: 20px;
+            border-radius: 0 0 20px 20px;
+            color: #fff;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h2 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 22px;
+        }
+
+        .header p {
+            margin: 8px 0 0;
+            font-size: 16px;
+        }
+
+        .saldo {
+            margin-top: 15px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .menu a {
+            background: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .menu a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .back-btn {
+            margin: 20px auto;
+            display: inline-block;
+            text-decoration: none;
+            color: #1a73e8;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Dede Permana</h2>
+            <p>ID: 1522 | Akses: Aktif</p>
+            <div class="saldo" id="saldoDisplay">Rp 0</div>
+        </div>
+
+        <div class="menu">
+            <a href="pencairan.html">Pencairan</a>
+            <a href="list.html">List</a>
+            <a href="kelola.html">Kelola</a>
+            <a href="informasi.html">Informasi Pekerja</a>
+        </div>
+
+        <a href="home.html" class="back-btn">← Kembali</a>
+    </div>
+
+    <script>
+        // Ganti saldo di sini
+        let saldo = 0; // ubah saldo di sini
+        localStorage.setItem("saldo", saldo);
+
+        document.getElementById("saldoDisplay").innerText = "Rp " + saldo.toLocaleString();
+    </script>
+</body>
+</html>
