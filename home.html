@@ -71,11 +71,18 @@
 
         .btn-back {
             background: #f44336;
-            margin-top: 10px;
         }
 
         .btn-back:hover {
             background: #c62828;
+        }
+
+        .btn-refresh {
+            background: #4caf50;
+        }
+
+        .btn-refresh:hover {
+            background: #388e3c;
         }
 
         .error {
@@ -134,6 +141,7 @@
         <input type="text" id="userid" placeholder="Masukkan ID">
         <button class="btn" onclick="checkID()">Masuk</button>
         <button class="btn btn-back" onclick="goBack()">Back</button>
+        <button class="btn btn-refresh" onclick="refreshPage()">Refresh</button>
         <div id="loading" class="loading">
             <div class="loader"></div>
             <p>Memproses...</p>
@@ -165,6 +173,10 @@
 
         function goBack() {
             window.location.href = "index.html";
+        }
+
+        function refreshPage() {
+            window.location.reload();
         }
     </script>
 </body>
