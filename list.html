@@ -19,13 +19,13 @@
         .container {
             text-align: center;
             background: #fff;
-            padding: 40px;
-            border-radius: 15px;
+            padding: 20px;
+            border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             transform: translateY(40px);
             opacity: 0;
             animation: fadeInUp 1s forwards;
-            max-width: 400px;
+            max-width: 320px; /* Lebih kecil agar muat di HP */
             width: 100%;
         }
 
@@ -38,25 +38,25 @@
 
         h2 {
             color: #333;
-            margin-bottom: 10px;
-            font-size: 22px;
+            margin-bottom: 5px;
+            font-size: 18px;
         }
 
         p {
             color: #666;
             margin-top: 0;
-            font-size: 16px;
+            font-size: 12px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
-            font-size: 14px;
+            margin-top: 10px;
+            font-size: 11px; /* Lebih kecil agar muat */
         }
 
         th, td {
-            padding: 8px;
+            padding: 5px;
             border-bottom: 1px solid #ddd;
             text-align: left;
         }
@@ -67,10 +67,11 @@
 
         .btn-back {
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 10px;
             text-decoration: none;
             color: #1a73e8;
             font-weight: 600;
+            font-size: 12px;
         }
 
         .btn-back:hover {
@@ -79,8 +80,19 @@
 
         .total {
             font-weight: bold;
-            margin-top: 10px;
+            margin-top: 5px;
             color: #333;
+            font-size: 12px;
+        }
+
+        /* Responsif untuk HP */
+        @media (max-width: 400px) {
+            .container {
+                padding: 15px;
+            }
+            table, th, td {
+                font-size: 10px;
+            }
         }
     </style>
 </head>
