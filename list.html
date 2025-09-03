@@ -25,6 +25,8 @@
             transform: translateY(40px);
             opacity: 0;
             animation: fadeInUp 1s forwards;
+            max-width: 400px;
+            width: 100%;
         }
 
         @keyframes fadeInUp {
@@ -46,6 +48,23 @@
             font-size: 16px;
         }
 
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #f1f1f1;
+        }
+
         .btn-back {
             display: inline-block;
             margin-top: 20px;
@@ -57,12 +76,45 @@
         .btn-back:hover {
             text-decoration: underline;
         }
+
+        .total {
+            font-weight: bold;
+            margin-top: 10px;
+            color: #333;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Data List</h2>
-        <p>Data list masih kosong nih</p>
+        <h2>Data Transfer</h2>
+        <p>Daftar 15 orang penerima Dana</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>No. Dana</th>
+                    <th>Jumlah (Rp)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Ahmad Fauzi</td><td>081234567890</td><td>30,000</td></tr>
+                <tr><td>Siti Nurhaliza</td><td>081345678901</td><td>25,000</td></tr>
+                <tr><td>Budi Santoso</td><td>081356789012</td><td>40,000</td></tr>
+                <tr><td>Dewi Lestari</td><td>081367890123</td><td>35,000</td></tr>
+                <tr><td>Rahmat Hidayat</td><td>081378901234</td><td>20,000</td></tr>
+                <tr><td>Indah Pratiwi</td><td>081389012345</td><td>50,000</td></tr>
+                <tr><td>Hendra Wijaya</td><td>081390123456</td><td>25,000</td></tr>
+                <tr><td>Maya Sari</td><td>081401234567</td><td>30,000</td></tr>
+                <tr><td>Andi Saputra</td><td>081412345678</td><td>40,000</td></tr>
+                <tr><td>Putri Amelia</td><td>081423456789</td><td>20,000</td></tr>
+                <tr><td>Joko Prabowo</td><td>081434567890</td><td>35,000</td></tr>
+                <tr><td>Rina Kartika</td><td>081445678901</td><td>30,000</td></tr>
+                <tr><td>Fajar Setiawan</td><td>081456789012</td><td>35,000</td></tr>
+                <tr><td>Lina Marlina</td><td>081467890123</td><td>50,000</td></tr>
+                <tr><td>Bayu Prakoso</td><td>081478901234</td><td>35,000</td></tr>
+            </tbody>
+        </table>
+        <div class="total">Total: Rp 500,000</div>
         <a href="pilihan.html" class="btn-back">← Kembali</a>
     </div>
 </body>
